@@ -1,0 +1,11 @@
+# Requireing sudo permitions ( needed for docker )
+sudo: required
+# Hey travis ci we need a docker copy
+services:
+  - docker
+
+before_install:
+  - docker build -t ziroock/docker-react -f Dockerfile.dev .
+
+script:
+  - docker run -e CI=true ziroock/docker-react npm run test
